@@ -5,26 +5,30 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-import { getAllDogs } from '../../redux/actions.js';
+import { filterByTemperaments } from '../../redux/actions.js';
 
 
 
 export default function Home(props) {
 
-
-
     const dispatch = useDispatch()
-    let allDogs = useSelector((state) => state.dogsRender);
+    let reduxState = useSelector((state) => state);
     let { temperaments } = props;
 
-
+    function aplicateFilters(event) {
+        event.preventDefault();
+        const { name, value } = event.target;
+        if (name == "temperament") {
+           return dispatch(filterByTemperaments(value));
+        }
+    }
 
 
     return (<div>
         <button onClick={() => props.clickNext()}>Next Dogs</button>
-        <button onClick={() => props.clickBack()}>Back Dogs</button>
+        <button onClick={() => props.clickBack()}>Prev Dogs</button>
 
-        <select name='temperament' defaultValue={"Default"} >
+        <select name='temperament' defaultValue={"Default"} onChange={aplicateFilters} >
             <option value="Default" disabled>Select Temperament</option>
             {
                 temperaments?.map((temp) => {
@@ -32,9 +36,30 @@ export default function Home(props) {
                 })
             }
         </select>
+
+        <select name='origin' defaultValue={"Default"} >
+            <option value="Default" disabled>Select Origin</option>
+            <option>API</option>
+            <option>DATABASE</option>
+        </select>
+
+        <select name='alphabetical' defaultValue={"Default"} >
+            <option value="Default" disabled>Select Order Alphabetical</option>
+            <option>Ascending</option>
+            <option>Descending </option>
+        </select>
+
+        <select name='weight' defaultValue={"Default"} >
+            <option value="Default" disabled>Select Order Weight</option>
+            <option>Ascending</option>
+            <option>Descending </option>
+        </select>
+
+        <button>Remove All Filters</button>
+
         {
 
-            allDogs?.map((el) => {
+            reduxState.dogsRender?.map((el) => {
                 return (
                     <Card
                         key={el.id}

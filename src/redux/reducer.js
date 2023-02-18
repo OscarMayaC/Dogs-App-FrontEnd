@@ -4,10 +4,9 @@
 
 let initialState = {
     dogsRender: [],
-    allDogs: [],
-    temperaments: [],
-    breeds: [],
-    details: []
+    dogsRenderFilters: [],
+    dogsRenderReset: [],
+    allDogs: []
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -20,15 +19,18 @@ export default function rootReducer(state = initialState, action) {
 
         case "nextDogs":
             let dogsToRender = []
-            for (let i = action.payload[0]; i < action.payload[1]; i++) {
+            for (let i = action.payload[0]; i < action.payload[1] && i < state.allDogs.length; i++) {
                 dogsToRender.push(state.allDogs[i]);
             }
             let dogsToRenderAux = dogsToRender;
             dogsToRender = [];
             return {
                 ...state,
-                dogsRender: dogsToRenderAux
+                dogsRender: dogsToRenderAux,
+                dogsRenderFilters: dogsToRenderAux,
+                dogsRenderReset: dogsToRenderAux
             }
+
 
         case "actualRender":
             return {
@@ -39,6 +41,22 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 temperaments: action.payload
+            }
+
+        case "filterByTemperaments":
+            const filterByTemper = state.allDogs;
+            const withThisTemper = [];
+            for (let i = 0; i < filterByTemper.length; i++) {
+                if (filterByTemper[i].temperament) {
+                    if (filterByTemper[i].temperament.includes(action.payload)) {
+                        withThisTemper.push(filterByTemper[i])
+                    }
+                }
+            }
+            return {
+                ...state,
+                dogsRender: withThisTemper,
+                dogsRenderFilters: withThisTemper
             }
 
         default:

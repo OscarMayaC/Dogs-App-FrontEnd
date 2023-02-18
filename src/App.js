@@ -23,17 +23,16 @@ function App() {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const [dogs, setDogs] = React.useState([])
 
-  const [auxiliar, setAuxiliar] = React.useState({
-    aState: 0,
-    bState: 8
-  })
-
+  let [dogsLength, setDogsLength] = React.useState(9)
   const getAllDogs = async () => {
     try {
       let allDogs = await axios(`http://localhost:3001/dogs`);
       allDogs = allDogs.data;
+
+      let DogsLength = allDogs.length;
+      setDogsLength(DogsLength);
+
       dispatch(saveAllDogs(allDogs));
       allDogs = [];
       if (next.startNext == 0) {
@@ -54,14 +53,15 @@ function App() {
   let [next, setNext] = React.useState({ startNext: 0, finishNext: 8 })
 
   function clickNext() {
-    let SN = next.startNext;
-    let FN = next.finishNext;
-    let arrayNext = [SN, FN];
-    dispatch(nextDogs(arrayNext));
-    SN = SN + 8;
-    FN = FN + 8;
-    setNext({ startNext: SN, finishNext: FN });
-
+    if (next.startNext < dogsLength) {
+      let SN = next.startNext;
+      let FN = next.finishNext;
+      let arrayNext = [SN, FN];
+      dispatch(nextDogs(arrayNext));
+      SN = SN + 8;
+      FN = FN + 8;
+      setNext({ startNext: SN, finishNext: FN });
+    }
   }
 
   function clickBack() {
@@ -91,6 +91,7 @@ function App() {
     temperamentsArray = temperamentsArray.data;
     setTemperaments(temperamentsArray);
   }
+
 
   return (
     <div className="App">
