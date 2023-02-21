@@ -10,12 +10,14 @@ import { useLocation } from 'react-router-dom';
 import axios, { all } from "axios";
 import { useDispatch } from 'react-redux';
 import { adminDogs } from './redux/actions';
-import { saveAllDogs, nextDogs, actualRender, allTemperaments } from "./redux/actions.js";
+import { saveAllDogs, nextDogs, actualRender, allTemperaments, searchByName } from "./redux/actions.js";
 
 //components
 import Welcome from './components/Welcome/Welcome.jsx';
 import Home from "./components/Home/Home.jsx";
 import Nav from './components/Nav/Nav.jsx';
+import Detail from "./components/Detail/Detail.jsx";
+import CreateDog from './components/CreateDog/CreateDog';
 
 
 function App() {
@@ -93,6 +95,8 @@ function App() {
   }
 
 
+
+
   return (
     <div className="App">
       <div>
@@ -101,6 +105,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Welcome getAllDogs={getAllDogs} />}></Route>
         <Route path='/home' element={<Home clickNext={clickNext} clickBack={clickBack} temperaments={temperaments} />} />
+        <Route path='/detail/:detailId' element={<Detail />} />
+        <Route path='/createDog' element={<CreateDog />}></Route>
       </Routes>
       {/* <h1>Henry Dogs</h1> */}
     </div>

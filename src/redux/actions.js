@@ -21,16 +21,76 @@ export function actualRender() {
 }
 
 export async function allTemperaments(temperamentsArray) {
-   
+
     return {
         type: "allTemperaments",
         payload: temperamentsArray
     }
 }
 
-export function filterByTemperaments(temperament){
+export function filterByTemperaments(temperament) {
     return {
         type: "filterByTemperaments",
         payload: temperament
+    }
+}
+
+// export function resetFiltersAndOrders() {
+//     return {
+//         type: "resetFiltersAndOrders"
+//     }
+// }
+
+export function oderByOrigin(origin) {
+    return {
+        type: "oderByOrigin",
+        payload: origin
+    }
+}
+
+export function orderByName(order) {
+    return {
+        type: "orderByName",
+        payload: order
+    }
+}
+
+export function oderByWeight(order) {
+    return {
+        type: "oderByWeight",
+        payload: order
+    }
+}
+
+export function searchByName(nameofdog) {
+    return (dispatch) => {
+        dispatch({ type: 'searchByName' });
+
+        fetch(`http://localhost:3001/dogs/name/?beed=${nameofdog}`)
+            .then((response) => response.json())
+            .then((dogsSearch) => {
+                if (dogsSearch.length > 0) {
+                    dispatch({ type: 'searchByName', payload: dogsSearch });
+                }
+            })
+            .catch((error) => {
+                dispatch({ type: 'searchByNameError', payload: error.message });
+            });
+    };
+}
+
+export function createNewDog(newDog) {
+    fetch('http://localhost:3001/dogs', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newDog)
+    })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+    return {
+        type: "createNewDog"
     }
 }

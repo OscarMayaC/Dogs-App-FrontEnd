@@ -4,8 +4,12 @@ import Card from "../Card/Card.jsx";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import SearchBar from '../SearchBar/SearchBar.jsx';
 
-import { filterByTemperaments } from '../../redux/actions.js';
+import {
+    filterByTemperaments, resetFiltersAndOrders, oderByOrigin,
+    orderByName, oderByWeight
+} from '../../redux/actions.js';
 
 
 
@@ -19,12 +23,26 @@ export default function Home(props) {
         event.preventDefault();
         const { name, value } = event.target;
         if (name == "temperament") {
-           return dispatch(filterByTemperaments(value));
+            return dispatch(filterByTemperaments(value));
+        }
+        // if (name == "reset") {
+        //     return dispatch(resetFiltersAndOrders());
+        // }
+        if (name == "origin") {
+            return dispatch(oderByOrigin(value));
+        }
+        if (name == "alphabetical") {
+            return dispatch(orderByName(value));
+        }
+        if (name == "weight") {
+            return dispatch(oderByWeight(value));
         }
     }
 
 
     return (<div>
+        <SearchBar />
+
         <button onClick={() => props.clickNext()}>Next Dogs</button>
         <button onClick={() => props.clickBack()}>Prev Dogs</button>
 
@@ -37,25 +55,25 @@ export default function Home(props) {
             }
         </select>
 
-        <select name='origin' defaultValue={"Default"} >
+        <select name='origin' defaultValue={"Default"} onChange={aplicateFilters} >
             <option value="Default" disabled>Select Origin</option>
-            <option>API</option>
-            <option>DATABASE</option>
+            <option value="api">API</option>
+            <option value="database">DATABASE</option>
         </select>
 
-        <select name='alphabetical' defaultValue={"Default"} >
+        <select name='alphabetical' defaultValue={"Default"} onChange={aplicateFilters} >
             <option value="Default" disabled>Select Order Alphabetical</option>
-            <option>Ascending</option>
-            <option>Descending </option>
+            <option value="ascending">Ascending</option>
+            <option value="descending">Descending </option>
         </select>
 
-        <select name='weight' defaultValue={"Default"} >
+        <select name='weight' defaultValue={"Default"} onChange={aplicateFilters} >
             <option value="Default" disabled>Select Order Weight</option>
-            <option>Ascending</option>
-            <option>Descending </option>
+            <option value="ascending">Ascending</option>
+            <option value="descending">Descending </option>
         </select>
 
-        <button>Remove All Filters</button>
+        {/* <button name='reset' value="reset" onClick={aplicateFilters}>Remove All Filters</button> */}
 
         {
 

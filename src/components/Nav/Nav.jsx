@@ -7,8 +7,8 @@ import { actualRender } from '../../redux/actions.js';
 
 export default function Nav(props) {
 
-    
-   
+
+
 
 
     return (
@@ -24,6 +24,12 @@ export default function Nav(props) {
                         ABOUT
                     </Link>
                 </button>
+        
+                <button className={styles.navButtonsLogOut}>
+                    <Link to="/createDog">
+                        CREATE DOG
+                    </Link>
+                </button>
 
                 <button className={styles.navButtonsLogOut}>
                     <Link to="/">
@@ -31,11 +37,7 @@ export default function Nav(props) {
                     </Link>
                 </button>
             </ul>
-            <div className={styles.navheader}>
 
-
-                <SearchBar onSearch={props.onSearch} />
-            </div>
         </div>
     )
 }
