@@ -73,6 +73,8 @@ export default function Home(props) {
             <option value="descending">Descending </option>
         </select>
 
+        <button onClick={() => props.Reset()}>Reset Temperaments and Origin</button>
+
         {/* <button name='reset' value="reset" onClick={aplicateFilters}>Remove All Filters</button> */}
 
         {

@@ -4,39 +4,40 @@ import styles from "./CreateDog.module.css";
 import { createNewDog } from '../../redux/actions.js';
 import { useDispatch } from 'react-redux';
 
-export default function CreateDog() {
+export default function CreateDog(props) {
 
   const dispatch = useDispatch();
 
   const [dogData, setDogData] = React.useState({
     image: "https://cdn.dribbble.com/users/1201194/screenshots/7197395/media/d5d300c76b56aa290f34cfc39de99c2d.gif",
     name: "",
-    height: "",
-    weight: "",
-    life_span: "",
-    Dog_Temperament: []
+    minHeight: "",
+    maxHeight: "",
+    minWeight: "",
+    maxWeight: "",
+    minLife_span: "",
+    maxLife_span: "",
+    Dog_TemperamentOne: "",
+    Dog_TemperamentTwo: "",
   })
 
   const [errors, setErrors] = React.useState({
     name: "",
-    height: "",
-    weight: "",
-    life_span: "",
-    Dog_Temperament: ""
+    minHeight: "",
+    maxHeight: "",
+    minWeight: "",
+    maxWeight: "",
+    minLife_span: "",
+    maxLife_span: "",
+    Dog_TemperamentOne: "",
+    Dog_TemperamentTwo: "",
   })
 
   function handleInputChange(event) {
-    if (event.target.name == "Dog_Temperament") {
-      setDogData({
-        ...dogData,
-        Dog_Temperament: [event.target.value]
-      })
-    } else {
-      setDogData({
-        ...dogData,
-        [event.target.name]: event.target.value
-      })
-    }
+    setDogData({
+      ...dogData,
+      [event.target.name]: event.target.value
+    })
     setErrors(validate({
       ...dogData,
       [event.target.name]: event.target.value
@@ -46,18 +47,34 @@ export default function CreateDog() {
   function handleSubmit(e) {
     e.preventDefault()
     if (!errors.name &&
-      !errors.height &&
-      !errors.weight &&
-      !errors.life_span &&
-      !errors.Dog_Temperament &&
+      !errors.minHeight &&
+      !errors.maxHeight &&
+      !errors.minWeight &&
+      !errors.maxWeight &&
+      !errors.minLife_span &&
+      !errors.maxLife_span &&
+      !errors.Dog_TemperamentOne &&
+      !errors.Dog_TemperamentTwo &&
       dogData.name) {
-      return dispatch(createNewDog(dogData));
+      let newDog = {
+        image: dogData.image,
+        name: dogData.name,
+        height: dogData.minHeight + " " + "-" + " " + dogData.maxHeight,
+        weight: dogData.minWeight + " " + "-" + " " + dogData.maxWeight,
+        life_span: dogData.minLife_span + " " + "-" + " " + dogData.maxLife_span + " " + "years",
+        Dog_Temperament: [dogData.Dog_TemperamentOne, dogData.Dog_TemperamentTwo]
+      }
+      dispatch(createNewDog(newDog));
+      console.log(newDog)
+      return window.alert("Your new dog has been created")
     } else {
+      console.log(errors)
+      console.log(dogData.Dog_TemperamentTwo)
       window.alert("Please complete all")
     }
   }
 
-
+  let { temperaments } = props;
 
 
   return (
@@ -73,31 +90,67 @@ export default function CreateDog() {
           <p>{errors.name}</p>
 
           <label className={styles.label} htmlFor="">
-            Height
+            Min Height
           </label>
-          <input className={styles.input} onChange={(event) => handleInputChange(event)} name="height" placeholder='Enter a height' type="text" />
-          <p>{errors.height}</p>
+          <input className={styles.input} onChange={(event) => handleInputChange(event)} name="minHeight" placeholder='Enter a height' type="text" />
+          <p>{errors.minHeight}</p>
 
           <label className={styles.label} htmlFor="">
-            Weight
+            Max Height
           </label>
-          <input className={styles.input} onChange={(event) => handleInputChange(event)} name="weight" placeholder='Enter a weight' type="text" />
-          <p>{errors.weight}</p>
+          <input className={styles.input} onChange={(event) => handleInputChange(event)} name="maxHeight" placeholder='Enter a height' type="text" />
+          <p>{errors.maxHeight}</p>
 
           <label className={styles.label} htmlFor="">
-            Life Span
+            Min Weight
           </label>
-          <input className={styles.input} onChange={(event) => handleInputChange(event)} name="life_span" placeholder='Enter a life span' type="text" />
-          <p>{errors.life_span}</p>
+          <input className={styles.input} onChange={(event) => handleInputChange(event)} name="minWeight" placeholder='Enter a weight' type="text" />
+          <p>{errors.minWeight}</p>
 
           <label className={styles.label} htmlFor="">
-            Temperaments
+            Max Weight
           </label>
-          <input className={styles.input} onChange={(event) => handleInputChange(event)} name="Dog_Temperament" placeholder='Enter temperaments' type="text" />
-          <p>{errors.Dog_Temperament}</p>
+          <input className={styles.input} onChange={(event) => handleInputChange(event)} name="maxWeight" placeholder='Enter a weight' type="text" />
+          <p>{errors.maxWeight}</p>
+
+          <label className={styles.label} htmlFor="">
+            Min Life Span
+          </label>
+          <input className={styles.input} onChange={(event) => handleInputChange(event)} name="minLife_span" placeholder='Enter a life span' type="text" />
+          <p>{errors.minLife_span}</p>
+
+          <label className={styles.label} htmlFor="">
+            Max Life Span
+          </label>
+          <input className={styles.input} onChange={(event) => handleInputChange(event)} name="maxLife_span" placeholder='Enter a life span' type="text" />
+          <p>{errors.maxLife_span}</p>
+
+          <label className={styles.label} htmlFor="">
+            Select the first temperament
+          </label>
+          <select name='Dog_TemperamentOne' defaultValue={"Default"} onChange={(event) => handleInputChange(event)} >
+            <option value="Default" disabled>Select Temperament</option>
+            {
+              temperaments?.map((temp) => {
+                return (<option value={temp.name} key={temp.id}>{temp.name}</option>)
+              })
+            }
+          </select>
+
+          <label className={styles.label} htmlFor="">
+            Select the second temperament
+          </label>
+          <select name='Dog_TemperamentTwo' defaultValue={"Default"} onChange={(event) => handleInputChange(event)} >
+            <option value="Default" disabled>Select Temperament</option>
+            {
+              temperaments?.map((temp) => {
+                return (<option value={temp.name} key={temp.id}>{temp.name}</option>)
+              })
+            }
+          </select>
 
           <button className={styles.button} type='submit'>
-            Log In
+            Create
           </button>
         </div>
       </form>

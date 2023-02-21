@@ -94,8 +94,10 @@ function App() {
     setTemperaments(temperamentsArray);
   }
 
-
-
+  function Reset() {
+    clickNext();
+    clickBack();
+  }
 
   return (
     <div className="App">
@@ -104,9 +106,9 @@ function App() {
       </div>
       <Routes>
         <Route path='/' element={<Welcome getAllDogs={getAllDogs} />}></Route>
-        <Route path='/home' element={<Home clickNext={clickNext} clickBack={clickBack} temperaments={temperaments} />} />
+        <Route path='/home' element={<Home clickNext={clickNext} clickBack={clickBack} temperaments={temperaments} Reset={Reset} />} />
         <Route path='/detail/:detailId' element={<Detail />} />
-        <Route path='/createDog' element={<CreateDog />}></Route>
+        <Route path='/createDog' element={<CreateDog temperaments={temperaments}/>}></Route>
       </Routes>
       {/* <h1>Henry Dogs</h1> */}
     </div>
