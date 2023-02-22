@@ -1,0 +1,68 @@
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 16px;
+}
+
+.options {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.buttons {
+    padding: 10px 10px;
+    background-color: #000000;
+    color: #181818;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+    /* margin-top: 10px; */
+}
+
+.buttons:hover {
+    background: #ffffff;
+    color: #050801;
+    box-shadow: 0 0 5px #03e9f4,
+        0 0 25px #03e9f4,
+        0 0 50px #03e9f4,
+        0 0 200px #03e9f4;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+.buttonLogOut {
+    padding: 10px 10px;
+    background-color: #ff0000;
+    color: #181818;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+    /* margin-top: 10px; */
+}
+
+.buttonLogOut:hover {
+    background: #ffffff;
+    color: #050801;
+    box-shadow: 0 0 5px #03e9f4,
+        0 0 25px #03e9f4,
+        0 0 50px #03e9f4,
+        0 0 200px #03e9f4;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}

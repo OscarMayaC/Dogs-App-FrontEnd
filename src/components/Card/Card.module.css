@@ -1,0 +1,39 @@
+.divCard {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    position: relative;
+    display: inline-block;
+    margin: 40px;
+    border-radius: 15px;
+    text-align: center;
+    backdrop-filter: blur(20px);
+    width: 400px;
+}
+
+.image {
+    width: 400px;
+    height: 300px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.divCard {
+    transition: transform 0.3s ease;
+}
+
+.divCard:hover {
+    transform: scale(1.2);
+}
+
+.titleCard{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: rgb(35, 21, 224);
+}
+
+.letters{
+    font-family: monospace;
+    font-size: 18px;
+    margin-left: 8px;
+    margin-right: 8px;
+    color: black;
+}

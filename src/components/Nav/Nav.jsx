@@ -13,26 +13,26 @@ export default function Nav(props) {
 
     return (
         <div className={styles.nav}>
-            <ul className={styles.navBotones}>
-                <button className={styles.navButtons}>
-                    <Link to="/home" onClick={() => props.clikActualRender()}>
+            <ul className={styles.options}>
+                <button className={styles.buttons}>
+                    <Link to="/home" onClick={() => props.clikActualRender()} style={{ textDecoration: "none" , color: '#03e9f4'}} >
                         HOME
                     </Link>
                 </button>
-                <button className={styles.navButtons}>
-                    <Link to="/about">
+                <button className={styles.buttons}>
+                    <Link to="/about" style={{ textDecoration: "none" , color: '#03e9f4'}} >
                         ABOUT
                     </Link>
                 </button>
-        
-                <button className={styles.navButtonsLogOut}>
-                    <Link to="/createDog">
+
+                <button className={styles.buttons}>
+                    <Link to="/createDog" style={{ textDecoration: "none" , color: '#03e9f4'}} >
                         CREATE DOG
                     </Link>
                 </button>
 
-                <button className={styles.navButtonsLogOut}>
-                    <Link to="/">
+                <button className={styles.buttonLogOut}>
+                    <Link to="/" style={{ textDecoration: "none" , color: '#03e9f4'}} >
                         LOG OUT
                     </Link>
                 </button>

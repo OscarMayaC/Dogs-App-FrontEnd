@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import SearchBar from '../SearchBar/SearchBar.jsx';
+import styles from "./Home.module.css";
 
 import {
     filterByTemperaments, resetFiltersAndOrders, oderByOrigin,
@@ -40,13 +41,13 @@ export default function Home(props) {
     }
 
 
-    return (<div>
+    return (<div className={styles.allScreen}>
         <SearchBar />
 
-        <button onClick={() => props.clickNext()}>Next Dogs</button>
-        <button onClick={() => props.clickBack()}>Prev Dogs</button>
+        <button className={styles.buttonNext} onClick={() => props.clickNext()}>Next Dogs</button>
+        <button className={styles.buttonPrev} onClick={() => props.clickBack()}>Prev Dogs</button>
 
-        <select name='temperament' defaultValue={"Default"} onChange={aplicateFilters} >
+        <select className={styles.select} name='temperament' defaultValue={"Default"} onChange={aplicateFilters} >
             <option value="Default" disabled>Select Temperament</option>
             {
                 temperaments?.map((temp) => {
@@ -55,25 +56,25 @@ export default function Home(props) {
             }
         </select>
 
-        <select name='origin' defaultValue={"Default"} onChange={aplicateFilters} >
+        <select className={styles.select} name='origin' defaultValue={"Default"} onChange={aplicateFilters} >
             <option value="Default" disabled>Select Origin</option>
             <option value="api">API</option>
             <option value="database">DATABASE</option>
         </select>
 
-        <select name='alphabetical' defaultValue={"Default"} onChange={aplicateFilters} >
+        <select className={styles.select} name='alphabetical' defaultValue={"Default"} onChange={aplicateFilters} >
             <option value="Default" disabled>Select Order Alphabetical</option>
             <option value="ascending">Ascending</option>
             <option value="descending">Descending </option>
         </select>
 
-        <select name='weight' defaultValue={"Default"} onChange={aplicateFilters} >
+        <select className={styles.select} name='weight' defaultValue={"Default"} onChange={aplicateFilters} >
             <option value="Default" disabled>Select Order Weight</option>
             <option value="ascending">Ascending</option>
             <option value="descending">Descending </option>
         </select>
 
-        <button onClick={() => props.Reset()}>Reset Temperaments and Origin</button>
+        <button className={styles.buttonReset} onClick={() => props.Reset()}>Reset T&O</button>
 
         {/* <button name='reset' value="reset" onClick={aplicateFilters}>Remove All Filters</button> */}
 
@@ -91,6 +92,8 @@ export default function Home(props) {
                     />
                 )
             })}
+      
+      
 
     </div>);
 }
