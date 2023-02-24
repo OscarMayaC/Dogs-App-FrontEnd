@@ -6,7 +6,8 @@ let initialState = {
     dogsRender: [],
     dogsRenderFilters: [],
     dogsRenderReset: [],
-    allDogs: []
+    allDogs: [],
+    allDogsReserve: []
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -14,7 +15,8 @@ export default function rootReducer(state = initialState, action) {
         case "saveAllDogs":
             return {
                 ...state,
-                allDogs: action.payload
+                allDogs: action.payload,
+                allDogsReserve: action.payload
             }
 
         case "nextDogs":
@@ -69,13 +71,20 @@ export default function rootReducer(state = initialState, action) {
             let allDogs = state.allDogs;
             if (action.payload == "api") {
                 allDogs = allDogs.filter(dog => dog.id < 265);
+                const [zero, one, two, three, four, five, six, seven, ...rest] = allDogs;
+                return {
+                    ...state,
+                    dogsRender: [zero, one, two, three, four, five, six, seven],
+                    allDogs: allDogs
+                }
             } else {
-                allDogs = allDogs.filter(dog => dog.id > 264);
+                let allDogs = state.allDogsReserve.filter(dog => dog.id > 264);
+                return {
+                    ...state,
+                    dogsRender: allDogs
+                }
             }
-            return {
-                ...state,
-                dogsRender: allDogs
-            }
+
 
         case "orderByName":
             let allDogsOrderByName = state.allDogs;
@@ -106,7 +115,7 @@ export default function rootReducer(state = initialState, action) {
                     }
                 })
             }
-            const [zero, one, two, three, four, five, six, seven, ...rest] = allDogsOrderByName;
+            const [zero, one, two, three, four, five, six, seven] = allDogsOrderByName;
             return {
                 ...state,
                 dogsRender: [zero, one, two, three, four, five, six, seven],
@@ -121,9 +130,11 @@ export default function rootReducer(state = initialState, action) {
             else {
                 allDogsOrderByWeight.sort((a, b) => parseInt(b.weight) - parseInt(a.weight));
             }
+            const [zero0, one1, two2, three3, four4, five5, six6, seven7] = allDogsOrderByWeight;
             return {
                 ...state,
-                dogsRender: allDogsOrderByWeight
+                dogsRender: [zero0, one1, two2, three3, four4, five5, six6, seven7],
+                allDogs: allDogsOrderByWeight
             }
 
         case "searchByName":
@@ -135,7 +146,7 @@ export default function rootReducer(state = initialState, action) {
             } else {
                 return {
                     ...state,
-                    dogsRender: [{ name: "No results found", image: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGJhODlhZGQwOTdmNzY5MWEzMGM4YzRhMTk2YjFjNDBkM2RhZmM3ZCZjdD1n/xT0xeuOy2Fcl9vDGiA/giphy.gif" }]
+                    dogsRender: [{ name: "No results found", image: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGJhODlhZGQwOTdmNzY5MWEzMGM4YzRhMTk2YjFjNDBkM2RhZmM3ZCZjdD1n/xT0xeuOy2Fcl9vDGiA/giphy.gif", id: 0 }]
                 }
             }
 

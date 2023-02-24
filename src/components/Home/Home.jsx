@@ -44,8 +44,8 @@ export default function Home(props) {
     return (<div className={styles.allScreen}>
         <SearchBar />
 
-        <button className={styles.buttonNext} onClick={() => props.clickNext()}>Next Dogs</button>
         <button className={styles.buttonPrev} onClick={() => props.clickBack()}>Prev Dogs</button>
+        <button className={styles.buttonNext} onClick={() => props.clickNext()}>Next Dogs</button>
 
         <select className={styles.select} name='temperament' defaultValue={"Default"} onChange={aplicateFilters} >
             <option value="Default" disabled>Select Temperament</option>
@@ -74,7 +74,7 @@ export default function Home(props) {
             <option value="descending">Descending </option>
         </select>
 
-        <button className={styles.buttonReset} onClick={() => props.Reset()}>Reset T&O</button>
+        <button className={styles.buttonReset} onClick={() => props.Reset()}>Reset</button>
 
         {/* <button name='reset' value="reset" onClick={aplicateFilters}>Remove All Filters</button> */}
 
@@ -94,9 +94,8 @@ export default function Home(props) {
             })}
 
         <div></div>
-        <button className={styles.buttonNextBottom} onClick={() => props.clickNext()}>Next Dogs</button>
         <button className={styles.buttonPrev} onClick={() => props.clickBack()}>Prev Dogs</button>
-
+        <button className={styles.buttonNextBottom} onClick={() => props.clickNext()}>Next Dogs</button>
 
     </div>);
 }

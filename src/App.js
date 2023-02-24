@@ -18,6 +18,7 @@ import Home from "./components/Home/Home.jsx";
 import Nav from './components/Nav/Nav.jsx';
 import Detail from "./components/Detail/Detail.jsx";
 import CreateDog from './components/CreateDog/CreateDog';
+import About from './components/About/About';
 
 
 function App() {
@@ -118,6 +119,7 @@ function App() {
         <Route path='/home' element={<Home clickNext={clickNext} clickBack={clickBack} temperaments={temperaments} Reset={Reset} />} />
         <Route path='/detail/:detailId' element={<Detail />} />
         <Route path='/createDog' element={<CreateDog temperaments={temperaments} />}></Route>
+        <Route path='/about' element={<About />} />
       </Routes>
       {/* <h1>Henry Dogs</h1> */}
     </div>

@@ -20,15 +20,15 @@ export default function Nav(props) {
                     </button>
                 </Link>
 
-                <Link to="/about" style={{ textDecoration: "none", color: '#03e9f4' }} >
-                    <button className={styles.buttons}>
-                        ABOUT
-                    </button>
-                </Link>
-
                 <Link to="/createDog" style={{ textDecoration: "none", color: '#03e9f4' }} >
                     <button className={styles.buttons}>
                         CREATE DOG
+                    </button>
+                </Link>
+
+                <Link to="/about" style={{ textDecoration: "none", color: '#03e9f4' }} >
+                    <button className={styles.buttons}>
+                        ABOUT
                     </button>
                 </Link>
 
