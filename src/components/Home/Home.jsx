@@ -92,8 +92,11 @@ export default function Home(props) {
                     />
                 )
             })}
-      
-      
+
+        <div></div>
+        <button className={styles.buttonNextBottom} onClick={() => props.clickNext()}>Next Dogs</button>
+        <button className={styles.buttonPrev} onClick={() => props.clickBack()}>Prev Dogs</button>
+
 
     </div>);
 }

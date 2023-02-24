@@ -74,7 +74,7 @@ export function searchByName(nameofdog) {
                 }
             })
             .catch((error) => {
-                dispatch({ type: 'searchByNameError', payload: error.message });
+                dispatch({ type: 'searchByName', payload: error.message });
             });
     };
 }

@@ -78,82 +78,86 @@ export default function CreateDog(props) {
 
 
   return (
-    <div className={styles.div}>
-      <form onSubmit={((e) => {
-        handleSubmit(e)
-      })} className={styles.form} >
-        <div>
-          <label className={styles.label} htmlFor="">
-            Name
-          </label>
-          <input className={styles.input} onChange={(event) => handleInputChange(event)} name="name" placeholder='Enter a name' type="text" />
-          <p>{errors.name}</p>
+    <div className={styles.allScreen}>
+      <div className={styles.feedbacform}>
+        <form onSubmit={((e) => {
+          handleSubmit(e)
+        })} className={styles.form} >
+          <div>
+            <label className={styles.label} htmlFor="">
+              Name
+            </label>
+            <input className={styles.input} onChange={(event) => handleInputChange(event)} name="name" placeholder='Enter a name' type="text" />
+            <p>{errors.name}</p>
 
-          <label className={styles.label} htmlFor="">
-            Min Height
-          </label>
-          <input className={styles.input} onChange={(event) => handleInputChange(event)} name="minHeight" placeholder='Enter a height' type="text" />
-          <p>{errors.minHeight}</p>
+            <label className={styles.label} htmlFor="">
+              Min Height
+            </label>
+            <input className={styles.input} onChange={(event) => handleInputChange(event)} name="minHeight" placeholder='Enter a height' type="text" />
+            <p>{errors.minHeight}</p>
 
-          <label className={styles.label} htmlFor="">
-            Max Height
-          </label>
-          <input className={styles.input} onChange={(event) => handleInputChange(event)} name="maxHeight" placeholder='Enter a height' type="text" />
-          <p>{errors.maxHeight}</p>
+            <label className={styles.label} htmlFor="">
+              Max Height
+            </label>
+            <input className={styles.input} onChange={(event) => handleInputChange(event)} name="maxHeight" placeholder='Enter a height' type="text" />
+            <p>{errors.maxHeight}</p>
 
-          <label className={styles.label} htmlFor="">
-            Min Weight
-          </label>
-          <input className={styles.input} onChange={(event) => handleInputChange(event)} name="minWeight" placeholder='Enter a weight' type="text" />
-          <p>{errors.minWeight}</p>
+            <label className={styles.label} htmlFor="">
+              Min Weight
+            </label>
+            <input className={styles.input} onChange={(event) => handleInputChange(event)} name="minWeight" placeholder='Enter a weight' type="text" />
+            <p>{errors.minWeight}</p>
 
-          <label className={styles.label} htmlFor="">
-            Max Weight
-          </label>
-          <input className={styles.input} onChange={(event) => handleInputChange(event)} name="maxWeight" placeholder='Enter a weight' type="text" />
-          <p>{errors.maxWeight}</p>
+            <label className={styles.label} htmlFor="">
+              Max Weight
+            </label>
+            <input className={styles.input} onChange={(event) => handleInputChange(event)} name="maxWeight" placeholder='Enter a weight' type="text" />
+            <p>{errors.maxWeight}</p>
 
-          <label className={styles.label} htmlFor="">
-            Min Life Span
-          </label>
-          <input className={styles.input} onChange={(event) => handleInputChange(event)} name="minLife_span" placeholder='Enter a life span' type="text" />
-          <p>{errors.minLife_span}</p>
+            <label className={styles.label} htmlFor="">
+              Min Life Span
+            </label>
+            <input className={styles.input} onChange={(event) => handleInputChange(event)} name="minLife_span" placeholder='Enter a life span' type="text" />
+            <p>{errors.minLife_span}</p>
 
-          <label className={styles.label} htmlFor="">
-            Max Life Span
-          </label>
-          <input className={styles.input} onChange={(event) => handleInputChange(event)} name="maxLife_span" placeholder='Enter a life span' type="text" />
-          <p>{errors.maxLife_span}</p>
+            <label className={styles.label} htmlFor="">
+              Max Life Span
+            </label>
+            <input className={styles.input} onChange={(event) => handleInputChange(event)} name="maxLife_span" placeholder='Enter a life span' type="text" />
+            <p>{errors.maxLife_span}</p>
 
-          <label className={styles.label} htmlFor="">
-            Select the first temperament
-          </label>
-          <select name='Dog_TemperamentOne' defaultValue={"Default"} onChange={(event) => handleInputChange(event)} >
-            <option value="Default" disabled>Select Temperament</option>
-            {
-              temperaments?.map((temp) => {
-                return (<option value={temp.name} key={temp.id}>{temp.name}</option>)
-              })
-            }
-          </select>
+            <label className={styles.label} htmlFor="">
+              Select the first temperament
+            </label>
+            <select name='Dog_TemperamentOne' defaultValue={"Default"} onChange={(event) => handleInputChange(event)} >
+              <option value="Default" disabled>Select Temperament</option>
+              {
+                temperaments?.map((temp) => {
+                  return (<option value={temp.name} key={temp.id}>{temp.name}</option>)
+                })
+              }
+            </select>
 
-          <label className={styles.label} htmlFor="">
-            Select the second temperament
-          </label>
-          <select name='Dog_TemperamentTwo' defaultValue={"Default"} onChange={(event) => handleInputChange(event)} >
-            <option value="Default" disabled>Select Temperament</option>
-            {
-              temperaments?.map((temp) => {
-                return (<option value={temp.name} key={temp.id}>{temp.name}</option>)
-              })
-            }
-          </select>
+            <div></div>
 
-          <button className={styles.button} type='submit'>
-            Create
-          </button>
-        </div>
-      </form>
+            <label className={styles.label} htmlFor="">
+              Select the second temperament
+            </label>
+            <select name='Dog_TemperamentTwo' defaultValue={"Default"} onChange={(event) => handleInputChange(event)} >
+              <option value="Default" disabled>Select Temperament</option>
+              {
+                temperaments?.map((temp) => {
+                  return (<option value={temp.name} key={temp.id}>{temp.name}</option>)
+                })
+              }
+            </select>
+
+            <button className={styles.button} type='submit'>
+              Create
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

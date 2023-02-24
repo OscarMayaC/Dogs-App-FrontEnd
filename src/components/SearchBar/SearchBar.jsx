@@ -23,7 +23,7 @@ export default function (props) {
         <div>
             <div>
                 <input placeholder="Enter the name of a dog breed" type="search" className={styles.searchTerm} nameofdog="" onChange={handleChange} />
-                <button className={styles.searchButton} onClick={(event) => searchClick(event)}>ADD
+                <button className={styles.searchButton} onClick={(event) => searchClick(event)}>SEARCH
                     <i className={styles.fafa}></i>
                 </button>
             </div>

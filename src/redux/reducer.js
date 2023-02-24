@@ -106,9 +106,11 @@ export default function rootReducer(state = initialState, action) {
                     }
                 })
             }
+            const [zero, one, two, three, four, five, six, seven, ...rest] = allDogsOrderByName;
             return {
                 ...state,
-                dogsRender: allDogsOrderByName
+                dogsRender: [zero, one, two, three, four, five, six, seven],
+                allDogs: allDogsOrderByName
             }
 
         case "oderByWeight":
@@ -125,9 +127,16 @@ export default function rootReducer(state = initialState, action) {
             }
 
         case "searchByName":
-            return {
-                ...state,
-                dogsRender: action.payload
+            if (action.payload) {
+                return {
+                    ...state,
+                    dogsRender: action.payload
+                }
+            } else {
+                return {
+                    ...state,
+                    dogsRender: [{ name: "No results found", image: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGJhODlhZGQwOTdmNzY5MWEzMGM4YzRhMTk2YjFjNDBkM2RhZmM3ZCZjdD1n/xT0xeuOy2Fcl9vDGiA/giphy.gif" }]
+                }
             }
 
         case "createNewDog":

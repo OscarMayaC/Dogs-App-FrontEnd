@@ -26,18 +26,19 @@ export default function Detail() {
 
 
     return (
-        <div>
+        <div className={styles.allScreen}>
 
-            <div className={styles.detailsCharacter}>
-                <h1>Name: {dog.name}</h1>
-                <h2>ID: {dog.id}</h2>
-                <h2>Height: {dog.height} cm</h2>
-                <h2>Weight: {dog.weight} kg</h2>
-                <h2>Temperaments: {dog.temperaments}</h2>
-                <h2>Life Span: {dog.life_span}</h2>
+            <div className={styles.details}>
+                <div className={styles.divDetails}>
+                    <h1 className={styles.dogName}>Name: {dog.name}</h1>
+                    <h2>ID: {dog.id}</h2>
+                    <h2>Height: {dog.height} cm</h2>
+                    <h2>Weight: {dog.weight} kg</h2>
+                    <h2>Temperaments: {dog.temperaments}</h2>
+                    <h2>Life Span: {dog.life_span}</h2>
+                </div>
+                <img className={styles.image} src={dog.image} alt={dog.name} />
             </div>
-            <img className={styles.image} src={dog.image} alt={dog.name} />
-
         </div>
     )
 }

@@ -1,0 +1,57 @@
+.divDetails {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    position: relative;
+    display: inline-block;
+    margin: 40px;
+    border-radius: 15px;
+    text-align: center;
+    backdrop-filter: blur(20px);
+    width: 420px;
+
+}
+
+@media screen and (min-width: 768px) {
+    .divDetails {
+        margin-bottom: 200px;
+    }
+}
+
+
+
+.allScreen {
+    background-image: url("https://thumbs.gfycat.com/InfatuatedDeterminedKatydid-small.gif");
+}
+
+
+.details {
+    overflow: hidden;
+    font-family: monospace;
+    font-size: 18px;
+    margin-left: 8px;
+    margin-right: 8px;
+    color: black;
+}
+
+.image {
+    margin-top: 20px;
+    width: 400px;
+    height: 300px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.details img {
+    transition: all 0.3s ease-in-out;
+    /* Add transition effect to the image */
+}
+
+.details:hover img {
+    transform: scale(1.1);
+    /* Scale up the image by 10% when hovered */
+}
+
+.dogName {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: rgb(35, 21, 224);
+}

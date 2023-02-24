@@ -18,10 +18,10 @@ export default function validate(inputs) {
         errors.maxWeight = "Enter a max weight"
     }
     if (!inputs.minLife_span) {
-        errors.minLife_span = "Enter a min life_span"
+        errors.minLife_span = "Enter a min life span"
     }
     if (!inputs.maxLife_span) {
-        errors.maxLife_span = "Enter a max life_span"
+        errors.maxLife_span = "Enter a max life span"
     }
     if (!inputs.Dog_TemperamentOne) {
         errors.Dog_Temperament = "Enter a Temperament"

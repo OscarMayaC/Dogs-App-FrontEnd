@@ -14,28 +14,29 @@ export default function Nav(props) {
     return (
         <div className={styles.nav}>
             <ul className={styles.options}>
-                <button className={styles.buttons}>
-                    <Link to="/home" onClick={() => props.clikActualRender()} style={{ textDecoration: "none" , color: '#03e9f4'}} >
+                <Link to="/home" onClick={() => props.clikActualRender()} style={{ textDecoration: "none", color: '#03e9f4' }} >
+                    <button className={styles.buttons}>
                         HOME
-                    </Link>
-                </button>
-                <button className={styles.buttons}>
-                    <Link to="/about" style={{ textDecoration: "none" , color: '#03e9f4'}} >
+                    </button>
+                </Link>
+
+                <Link to="/about" style={{ textDecoration: "none", color: '#03e9f4' }} >
+                    <button className={styles.buttons}>
                         ABOUT
-                    </Link>
-                </button>
+                    </button>
+                </Link>
 
-                <button className={styles.buttons}>
-                    <Link to="/createDog" style={{ textDecoration: "none" , color: '#03e9f4'}} >
+                <Link to="/createDog" style={{ textDecoration: "none", color: '#03e9f4' }} >
+                    <button className={styles.buttons}>
                         CREATE DOG
-                    </Link>
-                </button>
+                    </button>
+                </Link>
 
-                <button className={styles.buttonLogOut}>
-                    <Link to="/" style={{ textDecoration: "none" , color: '#03e9f4'}} >
+                <Link to="/" style={{ textDecoration: "none", color: '#03e9f4' }} >
+                    <button className={styles.buttonLogOut}>
                         LOG OUT
-                    </Link>
-                </button>
+                    </button>
+                </Link>
             </ul>
 
         </div>

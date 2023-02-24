@@ -22,12 +22,20 @@ import CreateDog from './components/CreateDog/CreateDog';
 
 function App() {
 
+  const navigate = useNavigate();
+  const [access, setAccess] = React.useState(false);
+  useEffect(() => {
+    !access && navigate("/");
+    // eslint-disable-next-line
+  }, [access]);
+
   const location = useLocation();
   const dispatch = useDispatch();
 
 
   let [dogsLength, setDogsLength] = React.useState(9)
   const getAllDogs = async () => {
+    setAccess(true);
     try {
       let allDogs = await axios(`http://localhost:3001/dogs`);
       allDogs = allDogs.data;
@@ -94,7 +102,8 @@ function App() {
     setTemperaments(temperamentsArray);
   }
 
-  function Reset() {
+  async function Reset() {
+    await getAllDogs()
     clickNext();
     clickBack();
   }
@@ -108,7 +117,7 @@ function App() {
         <Route path='/' element={<Welcome getAllDogs={getAllDogs} />}></Route>
         <Route path='/home' element={<Home clickNext={clickNext} clickBack={clickBack} temperaments={temperaments} Reset={Reset} />} />
         <Route path='/detail/:detailId' element={<Detail />} />
-        <Route path='/createDog' element={<CreateDog temperaments={temperaments}/>}></Route>
+        <Route path='/createDog' element={<CreateDog temperaments={temperaments} />}></Route>
       </Routes>
       {/* <h1>Henry Dogs</h1> */}
     </div>
