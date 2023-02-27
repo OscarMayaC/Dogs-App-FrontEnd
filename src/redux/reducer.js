@@ -1,6 +1,4 @@
 
-//se usa directamente TYPE y PAYLOAd porque se hace destructuring de ACTIONS,
-//sin destructuring debe usarse como actions.type || actions.payload
 
 let initialState = {
     dogsRender: [],
@@ -61,12 +59,6 @@ export default function rootReducer(state = initialState, action) {
                 dogsRenderFilters: withThisTemper
             }
 
-        // case "resetFiltersAndOrders":
-        //     return {
-        //         ...state,
-        //         dogsRender: state.dogsRenderReset
-        //     }
-
         case "oderByOrigin":
             let allDogs = state.allDogs;
             if (action.payload == "api") {
@@ -79,9 +71,16 @@ export default function rootReducer(state = initialState, action) {
                 }
             } else {
                 let allDogs = state.allDogsReserve.filter(dog => dog.id > 264);
-                return {
-                    ...state,
-                    dogsRender: allDogs
+                if (allDogs.length > 0) {
+                    return {
+                        ...state,
+                        dogsRender: allDogs
+                    }
+                } else {
+                    return {
+                        ...state,
+                        dogsRender: [{ name: "No results found", image: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGJhODlhZGQwOTdmNzY5MWEzMGM4YzRhMTk2YjFjNDBkM2RhZmM3ZCZjdD1n/xT0xeuOy2Fcl9vDGiA/giphy.gif", id: 0 }]
+                    }
                 }
             }
 

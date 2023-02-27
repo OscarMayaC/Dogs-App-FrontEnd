@@ -1,14 +1,12 @@
 import React from 'react';
-import axios from "axios";
 import Card from "../Card/Card.jsx";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import SearchBar from '../SearchBar/SearchBar.jsx';
 import styles from "./Home.module.css";
 
 import {
-    filterByTemperaments, resetFiltersAndOrders, oderByOrigin,
+    filterByTemperaments, oderByOrigin,
     orderByName, oderByWeight
 } from '../../redux/actions.js';
 
@@ -26,9 +24,6 @@ export default function Home(props) {
         if (name == "temperament") {
             return dispatch(filterByTemperaments(value));
         }
-        // if (name == "reset") {
-        //     return dispatch(resetFiltersAndOrders());
-        // }
         if (name == "origin") {
             return dispatch(oderByOrigin(value));
         }
@@ -76,7 +71,6 @@ export default function Home(props) {
 
         <button className={styles.buttonReset} onClick={() => props.Reset()}>Reset</button>
 
-        {/* <button name='reset' value="reset" onClick={aplicateFilters}>Remove All Filters</button> */}
 
         {
 

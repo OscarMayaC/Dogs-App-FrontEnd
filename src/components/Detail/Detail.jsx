@@ -15,11 +15,11 @@ export default function Detail() {
                 if (dog.name) {
                     setDog(dog);
                 } else {
-                    window.alert("Dog not fund");
+                    window.alert("Dog not found");
                 }
             })
             .catch((err) => {
-                window.alert(err.message);
+                console.log(err.message);
             });
         return setDog({});
     }, [detailId]);

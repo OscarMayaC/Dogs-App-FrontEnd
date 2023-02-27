@@ -1,15 +1,9 @@
-import SearchBar from '../SearchBar/SearchBar.jsx';
 import React from 'react';
 import styles from "./Nav.module.css";
 import { Link } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import { actualRender } from '../../redux/actions.js';
+
 
 export default function Nav(props) {
-
-
-
-
 
     return (
         <div className={styles.nav}>

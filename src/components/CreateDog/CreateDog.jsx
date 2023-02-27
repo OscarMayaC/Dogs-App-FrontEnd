@@ -65,11 +65,10 @@ export default function CreateDog(props) {
         Dog_Temperament: [dogData.Dog_TemperamentOne, dogData.Dog_TemperamentTwo]
       }
       dispatch(createNewDog(newDog));
-      console.log(newDog)
+      // console.log(newDog)
       return window.alert("Your new dog has been created")
     } else {
-      console.log(errors)
-      console.log(dogData.Dog_TemperamentTwo)
+      // console.log(errors)
       window.alert("Please complete all")
     }
   }

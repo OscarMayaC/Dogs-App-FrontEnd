@@ -3,7 +3,7 @@ import styles from "./SearchBar.module.css";
 import { useDispatch } from 'react-redux';
 import { searchByName } from '../../redux/actions';
 
-export default function (props) {
+export default function () {
 
     const dispatch = useDispatch();
 

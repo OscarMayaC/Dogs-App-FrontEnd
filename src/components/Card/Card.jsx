@@ -1,8 +1,6 @@
 import styles from "./Card.module.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+
 
 import React from 'react'
 

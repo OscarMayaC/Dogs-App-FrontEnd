@@ -7,10 +7,9 @@ import { Route } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import axios, { all } from "axios";
+import axios from "axios";
 import { useDispatch } from 'react-redux';
-import { adminDogs } from './redux/actions';
-import { saveAllDogs, nextDogs, actualRender, allTemperaments, searchByName } from "./redux/actions.js";
+import { saveAllDogs, nextDogs, actualRender } from "./redux/actions.js";
 
 //components
 import Welcome from './components/Welcome/Welcome.jsx';
@@ -121,7 +120,6 @@ function App() {
         <Route path='/createDog' element={<CreateDog temperaments={temperaments} />}></Route>
         <Route path='/about' element={<About />} />
       </Routes>
-      {/* <h1>Henry Dogs</h1> */}
     </div>
   );
 }

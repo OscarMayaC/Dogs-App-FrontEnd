@@ -1,4 +1,4 @@
-import axios from "axios";
+
 
 export function saveAllDogs(allDogs) {
     return {
@@ -34,12 +34,6 @@ export function filterByTemperaments(temperament) {
         payload: temperament
     }
 }
-
-// export function resetFiltersAndOrders() {
-//     return {
-//         type: "resetFiltersAndOrders"
-//     }
-// }
 
 export function oderByOrigin(origin) {
     return {
