@@ -96,16 +96,24 @@ function App() {
 
   let [temperaments, setTemperaments] = React.useState([]);
   const getAllTemperaments = async () => {
-    setTemperaments([]);
-    let temperamentsArray = await axios(`http://localhost:3001/temperaments`);
-    temperamentsArray = temperamentsArray.data;
-    setTemperaments(temperamentsArray);
+    try {
+      setTemperaments([]);
+      let temperamentsArray = await axios(`http://localhost:3001/temperaments`);
+      temperamentsArray = temperamentsArray.data;
+      setTemperaments(temperamentsArray);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   async function Reset() {
-    await getAllDogs()
-    clickNext();
-    clickBack();
+    try {
+      await getAllDogs()
+      clickNext();
+      clickBack();
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (

@@ -20,13 +20,13 @@ export function actualRender() {
     }
 }
 
-export async function allTemperaments(temperamentsArray) {
+// export async function allTemperaments(temperamentsArray) {
 
-    return {
-        type: "allTemperaments",
-        payload: temperamentsArray
-    }
-}
+//     return {
+//         type: "allTemperaments",
+//         payload: temperamentsArray
+//     }
+// }
 
 export function filterByTemperaments(temperament) {
     return {

@@ -21,7 +21,7 @@ export default function Detail() {
             .catch((err) => {
                 console.log(err.message);
             });
-        return setDog({});
+        // return setDog({});
     }, [detailId]);
 
 

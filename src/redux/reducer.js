@@ -22,13 +22,11 @@ export default function rootReducer(state = initialState, action) {
             for (let i = action.payload[0]; i < action.payload[1] && i < state.allDogs.length; i++) {
                 dogsToRender.push(state.allDogs[i]);
             }
-            let dogsToRenderAux = dogsToRender;
-            dogsToRender = [];
             return {
                 ...state,
-                dogsRender: dogsToRenderAux,
-                dogsRenderFilters: dogsToRenderAux,
-                dogsRenderReset: dogsToRenderAux
+                dogsRender: dogsToRender,
+                dogsRenderFilters: dogsToRender,
+                dogsRenderReset: dogsToRender
             }
 
 
@@ -37,11 +35,11 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
             }
 
-        case "allTemperaments":
-            return {
-                ...state,
-                temperaments: action.payload
-            }
+        // case "allTemperaments":
+        //     return {
+        //         ...state,
+        //         temperaments: action.payload
+        //     }
 
         case "filterByTemperaments":
             const filterByTemper = state.allDogs;
