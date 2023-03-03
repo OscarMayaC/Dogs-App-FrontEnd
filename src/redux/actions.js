@@ -88,3 +88,9 @@ export function createNewDog(newDog) {
         type: "createNewDog"
     }
 }
+
+export function resetAll() {
+    return {
+        type: "resetAll"
+    }
+}

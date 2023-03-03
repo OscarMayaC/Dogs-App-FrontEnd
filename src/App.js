@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from "axios";
 import { useDispatch } from 'react-redux';
-import { saveAllDogs, nextDogs, actualRender } from "./redux/actions.js";
+import { saveAllDogs, nextDogs, actualRender, resetAll } from "./redux/actions.js";
 
 //components
 import Welcome from './components/Welcome/Welcome.jsx';
@@ -106,14 +106,9 @@ function App() {
     }
   }
 
-  async function Reset() {
-    try {
-      await getAllDogs()
-      clickNext();
-      clickBack();
-    } catch (error) {
-      console.log(error)
-    }
+  function Reset() {
+    setNext({ startNext: 8, finishNext: 16 });
+    dispatch(resetAll());
   }
 
   return (

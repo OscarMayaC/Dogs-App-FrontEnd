@@ -22,13 +22,14 @@ export default function rootReducer(state = initialState, action) {
             for (let i = action.payload[0]; i < action.payload[1] && i < state.allDogs.length; i++) {
                 dogsToRender.push(state.allDogs[i]);
             }
-            return {
-                ...state,
-                dogsRender: dogsToRender,
-                dogsRenderFilters: dogsToRender,
-                dogsRenderReset: dogsToRender
+            if (dogsToRender.length > 0) {
+                return {
+                    ...state,
+                    dogsRender: dogsToRender,
+                    dogsRenderFilters: dogsToRender,
+                    dogsRenderReset: dogsToRender
+                }
             }
-
 
         case "actualRender":
             return {
@@ -42,7 +43,7 @@ export default function rootReducer(state = initialState, action) {
         //     }
 
         case "filterByTemperaments":
-            const filterByTemper = state.allDogs;
+            const filterByTemper = state.allDogsReserve;
             const withThisTemper = [];
             for (let i = 0; i < filterByTemper.length; i++) {
                 if (filterByTemper[i].temperament) {
@@ -51,14 +52,23 @@ export default function rootReducer(state = initialState, action) {
                     }
                 }
             }
+            let arrayFirstWithThisT = [];
+            let restWithThisTemper = [];
+            for (let j = 0; j < withThisTemper.length; j++) {
+                if (j < 8) {
+                    arrayFirstWithThisT.push(withThisTemper[j]);
+                } else {
+                    restWithThisTemper.push(withThisTemper[j]);
+                }
+            }
             return {
                 ...state,
-                dogsRender: withThisTemper,
-                dogsRenderFilters: withThisTemper
+                dogsRender: arrayFirstWithThisT,
+                allDogs: withThisTemper
             }
 
         case "oderByOrigin":
-            let allDogs = state.allDogs;
+            let allDogs = state.allDogsReserve;
             if (action.payload == "api") {
                 allDogs = allDogs.filter(dog => dog.id < 265);
                 const [zero, one, two, three, four, five, six, seven, ...rest] = allDogs;
@@ -84,7 +94,8 @@ export default function rootReducer(state = initialState, action) {
 
 
         case "orderByName":
-            let allDogsOrderByName = state.allDogs;
+            const instance = state.allDogs;
+            let allDogsOrderByName = instance;
             if (action.payload == "ascending") {
                 allDogsOrderByName.sort((a, b) => {
                     let nameA = a.name.toLowerCase();
@@ -112,10 +123,15 @@ export default function rootReducer(state = initialState, action) {
                     }
                 })
             }
-            const [zero, one, two, three, four, five, six, seven] = allDogsOrderByName;
+            let firstByNameRender = [];
+            for (let i = 0; i < 8; i++) {
+                if (allDogsOrderByName[i]) {
+                    firstByNameRender.push(allDogsOrderByName[i]);
+                }
+            }
             return {
                 ...state,
-                dogsRender: [zero, one, two, three, four, five, six, seven],
+                dogsRender: firstByNameRender,
                 allDogs: allDogsOrderByName
             }
 
@@ -127,10 +143,15 @@ export default function rootReducer(state = initialState, action) {
             else {
                 allDogsOrderByWeight.sort((a, b) => parseInt(b.weight) - parseInt(a.weight));
             }
-            const [zero0, one1, two2, three3, four4, five5, six6, seven7] = allDogsOrderByWeight;
+            let firstByWeightRender = [];
+            for (let i = 0; i < 8; i++) {
+                if (allDogsOrderByWeight[i]) {
+                    firstByWeightRender.push(allDogsOrderByWeight[i]);
+                }
+            }
             return {
                 ...state,
-                dogsRender: [zero0, one1, two2, three3, four4, five5, six6, seven7],
+                dogsRender: firstByWeightRender,
                 allDogs: allDogsOrderByWeight
             }
 
@@ -150,6 +171,27 @@ export default function rootReducer(state = initialState, action) {
         case "createNewDog":
             return {
                 ...state
+            }
+
+        case "resetAll":
+            const instanceDR = state.allDogsReserve;
+            instanceDR.sort((a, b) => {
+                let nameA = a.name.toLowerCase();
+                let nameB = b.name.toLowerCase();
+                if (nameA < nameB) {
+                    return -1
+                }
+                if (nameA > nameB) {
+                    return 1
+                } else {
+                    return 0;
+                }
+            })
+            const [zeroR, oneR, twoR, threeR, fourR, fiveR, sixR, sevenR] = instanceDR;
+            return {
+                ...state,
+                dogsRender: [zeroR, oneR, twoR, threeR, fourR, fiveR, sixR, sevenR],
+                allDogs: instanceDR
             }
 
 
