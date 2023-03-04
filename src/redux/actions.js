@@ -14,12 +14,6 @@ export function nextDogs(arrayNext) {
     }
 }
 
-export function actualRender() {
-    return {
-        type: "actualRender",
-    }
-}
-
 // export async function allTemperaments(temperamentsArray) {
 
 //     return {

@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from "axios";
 import { useDispatch } from 'react-redux';
-import { saveAllDogs, nextDogs, actualRender, resetAll } from "./redux/actions.js";
+import { saveAllDogs, nextDogs, resetAll } from "./redux/actions.js";
 
 //components
 import Welcome from './components/Welcome/Welcome.jsx';
@@ -46,7 +46,7 @@ function App() {
       dispatch(saveAllDogs(allDogs));
       allDogs = [];
       if (next.startNext == 0) {
-        clickNext();
+        dispatch(nextDogs([0, 8]))
       }
       getAllTemperaments();
 
@@ -64,12 +64,9 @@ function App() {
 
   function clickNext() {
     if (next.startNext < dogsLength) {
-      let SN = next.startNext;
-      let FN = next.finishNext;
-      let arrayNext = [SN, FN];
-      dispatch(nextDogs(arrayNext));
-      SN = SN + 8;
-      FN = FN + 8;
+      let SN = next.startNext + 8;
+      let FN = next.finishNext + 8;
+      dispatch(nextDogs([SN, FN]));
       setNext({ startNext: SN, finishNext: FN });
     }
   }
@@ -84,16 +81,6 @@ function App() {
     }
   }
 
-  function clikActualRender() {
-    let SN = next.startNext;
-    let FN = next.finishNext;
-    let arrayNext = [SN, FN];
-    dispatch(actualRender(arrayNext));
-    getAllDogs();
-  }
-
-
-
   let [temperaments, setTemperaments] = React.useState([]);
   const getAllTemperaments = async () => {
     try {
@@ -107,20 +94,24 @@ function App() {
   }
 
   function Reset() {
-    setNext({ startNext: 8, finishNext: 16 });
+    setNext({ startNext: 0, finishNext: 8 });
     dispatch(resetAll());
+  }
+
+  async function refreshAllDogs() {
+    await getAllDogs()
   }
 
   return (
     <div className="App">
       <div>
-        {location.pathname === "/" ? null : <Nav clikActualRender={clikActualRender} />}
+        {location.pathname === "/" ? null : <Nav refreshAllDogs={refreshAllDogs} />}
       </div>
       <Routes>
         <Route path='/' element={<Welcome getAllDogs={getAllDogs} />}></Route>
         <Route path='/home' element={<Home clickNext={clickNext} clickBack={clickBack} temperaments={temperaments} Reset={Reset} />} />
         <Route path='/detail/:detailId' element={<Detail />} />
-        <Route path='/createDog' element={<CreateDog temperaments={temperaments} />}></Route>
+        <Route path='/createDog' element={<CreateDog getAllDogs={getAllDogs} temperaments={temperaments} />}></Route>
         <Route path='/about' element={<About />} />
       </Routes>
     </div>

@@ -2,9 +2,12 @@ import React from 'react'
 import validate from './Validate.js'
 import styles from "./CreateDog.module.css";
 import { createNewDog } from '../../redux/actions.js';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 export default function CreateDog(props) {
+
+  let reduxState = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -44,8 +47,9 @@ export default function CreateDog(props) {
     }))
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
+    await props.getAllDogs();
     if (!errors.name &&
       !errors.minHeight &&
       !errors.maxHeight &&
@@ -55,7 +59,8 @@ export default function CreateDog(props) {
       !errors.maxLife_span &&
       !errors.Dog_TemperamentOne &&
       !errors.Dog_TemperamentTwo &&
-      dogData.name) {
+      dogData.name &&
+      dogData.Dog_TemperamentOne !== dogData.Dog_TemperamentTwo) {
       let newDog = {
         image: dogData.image,
         name: dogData.name,
@@ -64,9 +69,25 @@ export default function CreateDog(props) {
         life_span: dogData.minLife_span + " " + "-" + " " + dogData.maxLife_span + " " + "years",
         Dog_Temperament: [dogData.Dog_TemperamentOne, dogData.Dog_TemperamentTwo]
       }
-      dispatch(createNewDog(newDog));
-      // console.log(newDog)
-      return window.alert("Your new dog has been created")
+      let findRepeat = reduxState.allDogsReserve.find(dog => dog.name.includes(newDog.name));
+      if (findRepeat) {
+        window.alert("This dog exist, please create other")
+      } else {
+        dispatch(createNewDog(newDog));
+        setDogData({
+          image: "https://cdn.dribbble.com/users/1201194/screenshots/7197395/media/d5d300c76b56aa290f34cfc39de99c2d.gif",
+          name: "",
+          minHeight: "",
+          maxHeight: "",
+          minWeight: "",
+          maxWeight: "",
+          minLife_span: "",
+          maxLife_span: "",
+          Dog_TemperamentOne: "",
+          Dog_TemperamentTwo: "",
+        })
+        return window.alert("Your new dog has been created")
+      }
     } else {
       // console.log(errors)
       window.alert("Please complete all")

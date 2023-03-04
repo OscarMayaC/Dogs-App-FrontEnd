@@ -8,8 +8,8 @@ export default function Nav(props) {
     return (
         <div className={styles.nav}>
             <ul className={styles.options}>
-                <Link to="/home" onClick={() => props.clikActualRender()} style={{ textDecoration: "none", color: '#03e9f4' }} >
-                    <button className={styles.buttons}>
+                <Link to="/home" style={{ textDecoration: "none", color: '#03e9f4' }} >
+                    <button onClick={() => props.refreshAllDogs()} className={styles.buttons}>
                         HOME
                     </button>
                 </Link>

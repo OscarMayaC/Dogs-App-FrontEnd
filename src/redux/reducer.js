@@ -29,11 +29,10 @@ export default function rootReducer(state = initialState, action) {
                     dogsRenderFilters: dogsToRender,
                     dogsRenderReset: dogsToRender
                 }
-            }
-
-        case "actualRender":
-            return {
-                ...state,
+            } else {
+                return {
+                    ...state
+                }
             }
 
         // case "allTemperaments":
@@ -80,9 +79,16 @@ export default function rootReducer(state = initialState, action) {
             } else {
                 let allDogs = state.allDogsReserve.filter(dog => dog.id > 264);
                 if (allDogs.length > 0) {
+                    let arrayFirstByOrigin = []
+                    for (let i = 0; i < 8; i++) {
+                        if (allDogs[i]) {
+                            arrayFirstByOrigin.push(allDogs[i]);
+                        }
+                    }
                     return {
                         ...state,
-                        dogsRender: allDogs
+                        dogsRender: arrayFirstByOrigin,
+                        allDogs: allDogs
                     }
                 } else {
                     return {
@@ -157,9 +163,16 @@ export default function rootReducer(state = initialState, action) {
 
         case "searchByName":
             if (action.payload) {
+                let firstRenderSearchByName = [];
+                for (let i = 0; i < 8; i++) {
+                    if (action.payload[i]) {
+                        firstRenderSearchByName.push(action.payload[i]);
+                    }
+                }
                 return {
                     ...state,
-                    dogsRender: action.payload
+                    dogsRender: firstRenderSearchByName,
+                    allDogs: action.payload
                 }
             } else {
                 return {
