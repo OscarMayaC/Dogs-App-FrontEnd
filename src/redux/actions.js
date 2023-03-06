@@ -54,7 +54,8 @@ export function searchByName(nameofdog) {
     return (dispatch) => {
         dispatch({ type: 'searchByName' });
 
-        fetch(`http://localhost:3001/dogs/name/?beed=${nameofdog}`)
+        // fetch(`http://localhost:3001/dogs/name/?beed=${nameofdog}`)
+        fetch(`https://dogs-app-backend-production.up.railway.app/dogs/name/?beed=${nameofdog}`)
             .then((response) => response.json())
             .then((dogsSearch) => {
                 if (dogsSearch.length > 0) {
@@ -68,7 +69,8 @@ export function searchByName(nameofdog) {
 }
 
 export function createNewDog(newDog) {
-    fetch('http://localhost:3001/dogs', {
+    // fetch('http://localhost:3001/dogs'
+    fetch('https://dogs-app-backend-production.up.railway.app/dogs', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

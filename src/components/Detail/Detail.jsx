@@ -9,7 +9,8 @@ export default function Detail() {
     const { detailId } = useParams();
     const [dog, setDog] = useState({});
     useEffect(() => {
-        fetch(`http://localhost:3001/dogs/${detailId}`)
+        // fetch(`http://localhost:3001/dogs/${detailId}`)
+        fetch(`https://dogs-app-backend-production.up.railway.app/dogs/${detailId}`)
             .then((response) => response.json())
             .then((dog) => {
                 if (dog.name) {

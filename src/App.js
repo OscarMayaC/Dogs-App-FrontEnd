@@ -37,7 +37,8 @@ function App() {
   const getAllDogs = async () => {
     setAccess(true);
     try {
-      let allDogs = await axios(`http://localhost:3001/dogs`);
+      // let allDogs = await axios(`http://localhost:3001/dogs`);
+      let allDogs = await axios(`https://dogs-app-backend-production.up.railway.app/dogs`);
       allDogs = allDogs.data;
 
       let DogsLength = allDogs.length;
@@ -85,7 +86,8 @@ function App() {
   const getAllTemperaments = async () => {
     try {
       setTemperaments([]);
-      let temperamentsArray = await axios(`http://localhost:3001/temperaments`);
+      // let temperamentsArray = await axios(`http://localhost:3001/temperaments`);
+      let temperamentsArray = await axios(`https://dogs-app-backend-production.up.railway.app/temperaments`);
       temperamentsArray = temperamentsArray.data;
       setTemperaments(temperamentsArray);
     } catch (error) {
