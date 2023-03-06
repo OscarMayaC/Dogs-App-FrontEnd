@@ -18,6 +18,20 @@
     margin: 40px;
 }
 
+@media screen and (max-width: 768px) {
+    .feedbacform {
+        width: 200px;
+        margin: 0 auto;
+        background-color: #fcfcfc;
+        padding: 20px 50px 40px;
+        box-shadow: 1px 4px 10px 1px #aaa;
+        font-family: sans-serif;
+        position: relative;
+        display: inline-block;
+        margin: 30px;
+    }
+}
+
 .feedbacform * {
     box-sizing: border-box;
 }
